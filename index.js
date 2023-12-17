@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = 'https://products-api-2ttf.onrender.com/api/products';
     const productsContainer = document.getElementById('productsContainer');
@@ -24,12 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
             productDiv.classList.add('product');
 
             // Display product details
-            // Display product details
             const productTitle = document.createElement('h1');
             productTitle.textContent = product.product_title;
 
-            const badgeParagraph = document.createElement('p');
-            badgeParagraph.textContent = 'Badge: ' + product.product_badge;
+            const badge = document.createElement('span');
+            badge.classList.add('badge');
+            badge.textContent = product.product_badge;
 
             // Update image and container styling
             const productImageDiv = document.createElement('div');
@@ -41,26 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
             productImage.setAttribute('alt', product.product_title);
 
             productImageDiv.appendChild(productImage);
+            productImageDiv.appendChild(badge);
 
             const productDetailsDiv = document.createElement('div');
-
-            productDiv.appendChild(productImageDiv);
             productDetailsDiv.appendChild(productTitle);
-            
-            productDiv.appendChild(productImageDiv);
-            productDiv.appendChild(productDetailsDiv)
-
 
             // Display product variants
-            const variants = [];
             const variantsList = document.createElement('ul');
-            product.product_variants.forEach(variant => {
-                console.log(variant)
-                const variantItem = document.createElement('li');
-                variantItem.textContent = variant;
-                variantsList.appendChild(variantItem);
+            product.product_variants.forEach(variantObj => {
+                Object.values(variantObj).forEach(value => {
+                    const variantItem = document.createElement('li');
+                    variantItem.textContent = value;
+                    variantsList.appendChild(variantItem);
+                });
             });
+
             productDetailsDiv.appendChild(variantsList);
+            productDiv.appendChild(productImageDiv);
+            productDiv.appendChild(productDetailsDiv);
 
             productsContainer.appendChild(productDiv);
         });
@@ -84,3 +81,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch products on page load
     fetchProducts();
 });
+
