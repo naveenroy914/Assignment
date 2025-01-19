@@ -80,5 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch products on page load
     fetchProducts();   
+    
 });
 
