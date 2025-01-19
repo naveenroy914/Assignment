@@ -79,11 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Fetch products on page load
-<<<<<<< HEAD
     fetchProducts();  
-=======
-    fetchProducts();   
-    
->>>>>>> testing
 });
 
